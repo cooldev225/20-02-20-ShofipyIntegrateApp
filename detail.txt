@@ -1,0 +1,67 @@
+Hi Anca
+
+I'm Matthew, the lead developer at Stokkd. David passed on your details. Welcome aboard!
+
+From what I understand he's shared details of the task we were hoping you could work on, related to changes for Shopify API calls.
+
+If you have any technical questions in relation to the programming itself or the code, please let me know. Questions about general product usage, stocktaking workflow and so on are best directed to David.
+
+I have shared the source code repository with you, we use Bitbucket with the Gitflow workflow. When you work on a task/feature, if you can create a feature branch from the develop branch. Then when finished if you can create a pull request back to develop, with myself as the reviewer.
+
+I have also shared a copy of the SQL database via Dropbox. There is a bak & a bacpac file, you can restore from either file for local development.
+
+There is a Readme.txt in the zip file I shared with further instructions, including login details for the app.
+
+Let me know if you have any issues getting the source code building. We have had some issues recently with missing dependencies etc, but I think we have these resolved.
+
+Cheers.
+
+Kind Regards,
+
+
+I have 2 main projects:
+
+1. Stokkd Stocktaking
+ - This is the main project. I am currently working on getting it launched. This is a web app that performs a stocktaking (inventory count) function, primarily for retail businesses. Our focus is on integrating with cloud POS solutions via API. We import their product information, they perform the stocktake, then we post the results back to their system.
+
+Future development required for this project:
+
+New features:
+- Support serial numbers
+- Support bin locations
+- Support package product items
+- custom programming required by customers
+
+New integrations:
+- continue adding API integrations (2 integrations are currently working, a third is almost complete). At least 5 more are planned in the short to medium term. Some are dependent on new features.
+
+Ongoing maintenance:
+- bug fixes
+- tweaks
+- browser compatibility
+
+2. Stokkd Purchasing
+ - This web app collects product information from supplier data feeds using either ftp, http or imap. The product data is then linked (system searches for identical products from different suppliers), and new items are created. Once the item is linked and/or created, there is a process of “cleaning” the data. Categories, sub-categories, descriptions can be edited, and a variety of “system” tags can be added (this feature is very complex). Once this is done, the products can be set to “Visible” to make them available to the front end. This all done in the back end via an admin login.
+
+In the front end, the customer can build purchase orders focused around the products. It is possible to build multiple purchase orders for multiple suppliers, for multiple locations at once. Once the customer is ready to submit the orders, the system forces a final review. On acceptance, the system then submits the order via email. A pdf and a csv file are attached to the email. The email also includes a link for the supplier to accept receipt of the order. This link then updates the order status in our system. There is an API integration to the customers POS system, which means we can display up to date stock quantities and sales data.
+Future development required for this project:
+
+New features:
+- system currently only collects one image. Some data feeds provide multiple image information. Need to collect these images, then display on back end and front end.
+- retrieve product data from suppliers via API, instead of data feed.
+- Duplicate back end tag system for front end. “System” tags assigned in the back end are read-only. Customers need to be able to assign their own “user” tags. The db table structure was designed to support this.
+- push new product items, images that have been ordered to customer POS via existing POS API
+- push submitted purchase orders to customer POS via existing POS API
+
+Ongoing maintenance:
+- bug fixes
+- tweaks
+- browser compatibility
+Obviously, this is a very brief overview of the apps’ functionality and programming required. Both apps are very powerful.
+
+To start with,, I’d like your focus to be on fixing an API integration for the stocktaking app. We’ll establish a relationship and go from there.
+
+Let me know if you would like a detailed run-through of the apps.
+
+
+Kind regards,

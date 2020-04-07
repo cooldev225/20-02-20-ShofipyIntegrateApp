@@ -1,0 +1,40 @@
+Implementation as per comment on the right.
+
+Auth, Products & Locations
+
+Create new service, ShopifyService to manage authentication, pull products/qtys, locations and update qtys. Refer to existing services that do the same (Vend, Xero, Kounta).
+
+Create new controller, ShopifyController to work along side ShopifyService. Refer to existing controllers that do the same (Vend, Xero, Kounta).
+
+
+http://shopify.com.au/
+
+https://help.shopify.com/en/api/guides/updating-inventory
+
+https://github.com/nozzlegear/ShopifySharp
+
+
+Matthew Macbeth commented:
+Feb 2 at 8:12 pm
+Authentication (https://help.shopify.com/en/api/getting-started/authentication)
+
+This will perform OAuth authentication for a Public app.
+You will need to implement the backend controller & service code to talk to Shopify.
+We have existing integrations implementing OAuth 2.0 already, so much of the framework is already in place that you can follow & replicate.
+UI modifications are also required, but fairly minimal.  Again we have example integrations already, so it's just extending what we already have.
+Once you have obtained the access token, we already have code to handle storage and retrieval of the token in the database, that is shared with other integrations.
+Retrieving tracked inventory details and levels (https://help.shopify.com/en/api/reference/products &  https://help.shopify.com/en/api/reference/inventory/inventoryitem)
+
+Fields required include Inventory Item Id, SKU, Barcode, Title, Product Type, Inventory Qty, Cost.  Note: Cost will require the inventoryitem endpoint.
+You will need to retrieve all products from Shopify, and store in the database.
+We have the appropriate code to handle saving this data to our database, you just need to retrieve the product information and massage into the correct format.
+Retrieving locations (https://help.shopify.com/en/api/reference/inventory/location)
+
+Fields required include Name & Code (abbreviation of Name).
+You will need to retrieve all locations from Shopify, and store in the database.
+We have the appropriate code to handle saving this data to our database, you just need to retrieve the product information and massage into the correct format.
+Updating tracked inventory levels to Shopify (https://help.shopify.com/en/api/reference/inventory/inventorylevel)
+
+Fields required include Inventory Item Id, Location Id, Inventory Qty.
+This will require a post back to Shopfiy per inventory item & location, to update the quantity after a stocktake/inventory count is complete.
+We have the appropriate code to handle retrieving products from our database, you just need to post back to Shopify in the appropriate format. 

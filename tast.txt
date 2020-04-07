@@ -1,0 +1,13 @@
+We have a Shopify Integration that was developed using the ShopifySharp .NET SDK. This SDK has calls to the API that are out of date and will be deprecated, so we want to remove this, and use straight HTTP calls instead (no SDK).  We do this for other integrations such Kounta, using the HttpUtils class.
+
+I have attached the scope from the Shopify task as a comment on the right.  This will hopefully detail what was originally required (which is still the case).  It also contains the API endpoints that you need to be referring to.
+
+One key issue with the SDK, apart from outdated calls, is that the SDK didn't support current pagination techniques. All function calls to GET data should paginate as per the Shopify API to minimise traffic & API calls. We don't want products to be queried one by one, but instead get a list a page at a time.  We do pagination in the Kounta & Vend integerations we have as an example.
+
+One exemption to this is the POST back to the inventorylevel endpoint when we update the quantities in the StockTakeRecord method, this can happen as a separate API call per product/variant/location.
+
+Technical Points:
+Please follow code styling, structure & naming conventions already in place within the application.
+The service most (if not all) of you changes will be in is the ShopifyService. The ShopifyController will need very little changing, and perhaps no changes at all.
+Please create your own Shopify Development account for testing.  You can update the ConsumerKey & ConsumerSecret in the code.
+The app integration with Shopify is a Public app.
